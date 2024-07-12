@@ -1,8 +1,8 @@
 {
-    "name": "VisualizationUnity",
-    "rootNamespace": "Visualization.Unity",
+    "name": "CollectionsVisualization_Unity",
+    "rootNamespace": "CollectionsVisualization.Unity",
     "references": [
-        "GUID:21b0c8d1703a94250bfac916590cea4f",
+        "GUID:4675062a741678b4f9dc3cf3f055743f",
         "GUID:2bafac87e7f4b9b418d9448d219b01ab"
     ],
     "includePlatforms": [],

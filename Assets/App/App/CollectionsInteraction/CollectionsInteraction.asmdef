@@ -1,6 +1,6 @@
 {
-    "name": "VisualizationCore",
-    "rootNamespace": "Visualization.Core",
+    "name": "CollectionsInteraction",
+    "rootNamespace": "CollectionsInteraction",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
