@@ -11,15 +11,14 @@ namespace CollectionsVisualization.Unity
 
         [SerializeField] private float _delayBetweenCommands = 0.5f;
 
+        public void Construct(Interactor_List<int> interactor)
+        {
+            _interactor = interactor;
+            // _interactor.OnCommandInvoked += SetInvokedCommand;
+        }
+
         private void Start()
         {
-            _interactor = new Interactor_List<int>();
-            _interactor.OnCommandInvoked += SetInvokedCommand;
-            for (int i = 0; i < 10; i++)
-            {
-                _interactor.AddCommand_AddItem(i);
-            }
-
             StartCoroutine(RunVisualization());
         }
 

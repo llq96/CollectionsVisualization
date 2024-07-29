@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace CollectionsInteraction
 {
@@ -9,6 +11,7 @@ namespace CollectionsInteraction
         protected Queue<Command<TCollection>> Commands { get; } = new();
 
         public event Action<Command<TCollection>> OnCommandInvoked;
+
 
         public Interactor()
             => Collection = new TCollection();
@@ -39,5 +42,8 @@ namespace CollectionsInteraction
 
             return false;
         }
+
+        public ReadOnlyCollection<Command<TCollection>> GetCommandsAsReadonly()
+            => Commands.ToList().AsReadOnly();
     }
 }

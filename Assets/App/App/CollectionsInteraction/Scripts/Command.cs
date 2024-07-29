@@ -2,7 +2,12 @@ using System;
 
 namespace CollectionsInteraction
 {
-    public class Command<TCollection> where TCollection : new()
+    public class CommandBase
+    {
+        public string Expression { get; protected set; }
+    }
+
+    public class Command<TCollection> : CommandBase where TCollection : new()
     {
         public Command(Action<TCollection> action, string expression)
         {
@@ -11,6 +16,5 @@ namespace CollectionsInteraction
         }
 
         public Action<TCollection> Action { get; }
-        public string Expression { get; }
     }
 }
