@@ -10,11 +10,11 @@ namespace CollectionsVisualization.Unity
     {
         [SerializeField] private Pool_CommandUI _pool_commandUI;
 
-        private Interactor_List<int> _interactor;
+        private InteractorBase _interactor;
 
         private List<CommandUI> _commandUIs = new();
 
-        public void Construct(Interactor_List<int> interactor)
+        public void Construct(InteractorBase interactor)
         {
             _interactor = interactor;
             _interactor.OnCommandInvoked += SetInvokedCommand;
@@ -26,7 +26,7 @@ namespace CollectionsVisualization.Unity
             SpawnCommands(commands);
         }
 
-        private void SpawnCommands(ReadOnlyCollection<Command<List<int>>> commands)
+        private void SpawnCommands(ReadOnlyCollection<CommandBase> commands)
         {
             foreach (var command in commands)
             {
@@ -36,7 +36,7 @@ namespace CollectionsVisualization.Unity
             }
         }
 
-        private void SetInvokedCommand(Command<List<int>> command)
+        private void SetInvokedCommand(CommandBase command)
         {
             foreach (var commandUI in _commandUIs)
             {

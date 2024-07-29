@@ -2,9 +2,9 @@ using CollectionsInteraction;
 
 namespace CollectionsVisualization.Unity
 {
-    public class InteractorListFactory
+    public class Interactor_List_Factory : IInteractorFactory
     {
-        public Interactor_List<int> GetInteractorList()
+        public InteractorBase GetInteractor()
         {
             var _interactor = new Interactor_List<int>();
 

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -6,10 +5,10 @@ namespace CollectionsVisualization.Unity
 {
     public class Pool_CommandUI : MonoBehaviour
     {
-        private ObjectPool<CommandUI> _pool;
-
         [SerializeField] private Transform _spawnParent;
         [SerializeField] private CommandUI _prefab;
+
+        private ObjectPool<CommandUI> _pool;
 
         public CommandUI Get() => _pool.Get();
         public void Release(CommandUI commandUI) => _pool.Release(commandUI);

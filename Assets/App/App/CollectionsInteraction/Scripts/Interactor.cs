@@ -5,18 +5,18 @@ using System.Linq;
 
 namespace CollectionsInteraction
 {
-    public abstract class Interactor<TCollection> where TCollection : new()
+    public abstract class Interactor<TCollection> : InteractorBase where TCollection : new()
     {
         protected TCollection Collection { get; }
         protected Queue<Command<TCollection>> Commands { get; } = new();
 
-        public event Action<Command<TCollection>> OnCommandInvoked;
+        public new event Action<Command<TCollection>> OnCommandInvoked;
 
 
-        public Interactor()
+        protected Interactor()
             => Collection = new TCollection();
 
-        public Interactor(TCollection collection)
+        protected Interactor(TCollection collection)
             => Collection = collection;
 
         public void AddCommand(Command<TCollection> command)
@@ -31,11 +31,12 @@ namespace CollectionsInteraction
             action?.Invoke(Collection);
         }
 
-        public bool InvokeNextCommand()
+        public override bool InvokeNextCommand()
         {
             if (Commands.TryDequeue(out var command))
             {
                 DoAction(command.Action);
+                SendCommandInvokedEvents(command);
                 OnCommandInvoked?.Invoke(command);
                 return true;
             }
@@ -43,7 +44,10 @@ namespace CollectionsInteraction
             return false;
         }
 
-        public ReadOnlyCollection<Command<TCollection>> GetCommandsAsReadonly()
+        public new ReadOnlyCollection<Command<TCollection>> GetCommandsAsReadonly()
             => Commands.ToList().AsReadOnly();
+
+        protected override List<CommandBase> GetCommandsList()
+            => Commands.Cast<CommandBase>().ToList();
     }
 }
